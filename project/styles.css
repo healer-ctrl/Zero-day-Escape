@@ -1,0 +1,207 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color: #0c0c0c;
+    color: #e6e6e6;
+}
+
+h1 {
+    color: #e74c3c;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
+#roomContainer {
+    position: relative;
+}
+
+.clickable-area {
+    position: absolute;
+    cursor: pointer;
+}
+
+#topRight {
+    top: 38%; /* Adjust as needed */
+    right: 37%; /* Adjust as needed */
+    width: 184px;
+    height: 105px;
+    border-radius: 5px;
+}
+
+#bottomLeft {
+    bottom: 38%; /* Adjust as needed */
+    left: 13.5%; /* Adjust as needed */
+    width: 178px;
+    height: 180px;
+    border-radius: 5px;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1e1e1e;
+    border: 2px solid #e74c3c;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 1000;
+    color: #e6e6e6;
+}
+
+.popup h2 {
+    color: #e74c3c;
+}
+
+.popup button {
+    margin-top: 10px;
+}
+@keyframes fall {
+    0% {
+        transform: translateY(-100%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+.falling-numbers {
+    position: absolute;
+    color: #00ff00; /* Bright green for hacking effect */
+    font-size: 24px;
+    pointer-events: none;
+    white-space: nowrap;
+    animation: fall linear infinite;
+}
+
+.number {
+    animation-duration: 2s;
+}
+#leaderboard {
+    text-align: center;
+    color: #e6e6e6;
+}
+#infoForm {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 30px; /* Increased padding for more space */
+    border: 2px solid #4CAF50; /* Friendly green border */
+    background-color: #ffffff; /* White background for the form */
+    border-radius: 10px; /* Rounded corners */
+    width: 400px; /* Set a fixed width for the form */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+#infoForm input {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+}
+
+#infoForm button {
+    margin-top: 20px;
+}
+body {
+    background-color: #1a1a1a; /* Keep dark background for the game */
+    color: #00ff00; /* Bright green text for the game */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for a coding vibe */
+}
+
+
+
+#infoForm {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff; /* White background for the form */
+    border: 2px solid #4CAF50; /* Friendly green border */
+    border-radius: 10px; /* Rounded corners */
+}
+
+#infoForm input {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+    background-color: #f0f0f0; /* Light gray input background */
+    border: 1px solid #4CAF50; /* Green border */
+    color: #333; /* Dark text */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+    border-radius: 5px; /* Slightly rounded corners */
+}
+
+#infoForm input:focus {
+    background-color: #e8f5e9; /* Lighter background on focus */
+    border-color: #2e7d32; /* Darker green border on focus */
+    outline: none; /* Remove default outline */
+}
+
+#infoForm button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Friendly green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+#infoForm button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+#finalMessage {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #e8f5e9; /* Light green background */
+    color: #333; /* Dark text for contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+.story-text {
+    font-size: 18px; /* Slightly larger font size */
+    margin: 20px auto; /* Space around the text */
+    line-height: 1.5; /* Increase line spacing for readability */
+    color: #e6e6e6; /* Light color for contrast against dark background */
+    max-width: 600px; /* Limit the width for better readability */
+    text-align: center; /* Center align the text */
+    text-shadow: 0 0 5px #00ff00; /* Glowing effect for a hacker vibe */
+}
+
+
+#startBtn {
+    padding: 15px 30px;
+    background-color: #00ff00;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#startBtn:hover {
+    background-color: #00cc00;
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room - Hacked</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+
+</head>
+<body>
+<div id="welcome">
+    <h1>Welcome to the Room!</h1>
+    <p>You have been selected as a target. Can you escape the hacking attempts?</p>
+    <button id="startBtn">Let's Fight!</button>
+</div>
+<!--<div id="video-background">-->
+<!--    <video autoplay muted loop id="bgVideo">-->
+<!--        <source src="path/to/your/video.mp4" type="video/mp4">-->
+<!--    </video>-->
+<!--    <div id="welcome">-->
+<!--        <h1 class="animated-title">Welcome to the Hacking Challenge!</h1>-->
+<!--        <p class="story-text" id="typing-text"></p>-->
+<!--        <button id="startBtn">Let's Fight!</button>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+<div id="game" style="display: none;">
+    <h1>Game Room</h1>
+    <p>Choose an area to explore:</p>
+    <div id="roomContainer">
+        <img id="roomImage" src="room.jpg" alt="Creepy Room" style="width: 80%; border: 2px solid #e74c3c; border-radius: 10px;">
+        <div class="clickable-area" id="topRight" title="Click here for a puzzle!"></div>
+        <div class="clickable-area" id="bottomLeft" title="Click here for a puzzle!"></div>
+    </div>
+</div>
+
+<div id="victory" style="display: none;">
+    <h1>Congratulations!</h1>
+    <p>You've escaped the hacking attempts!</p>
+    <button id="restartBtn">Play Again</button>
+</div>
+
+<div id="leaderboard" style="display: none;">
+    <h1>Congratulations!</h1>
+    <p>You successfully escaped the room!</p>
+    <p>You are fully aware of security measures.</p>
+    <p>Please fill in your details to enter the leaderboard:</p>
+    <form id="infoForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="text" id="phone" placeholder="Your Phone Number" required>
+        <input type="email" id="email" placeholder="Your Email Address" required>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="finalMessage" style="display: none;"></p>
+</div>
+
+
+<audio id="bgMusic" src="background.mp3" loop autoplay></audio>
+<audio id="victorySound" src="victory.mp3"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
