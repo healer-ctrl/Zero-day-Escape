@@ -74,7 +74,7 @@
 
         // Check for specific endpoints and file access
         if (url === "www.socgen.com/db") {
-            response = `Access Denied! You do not have permission to view this resource.\n\nUser Data:\n[
+            response = `Access Denied! You cannot view this file.\n\nAttempted to read: /etc/passwd\nSensitive Data Exposed:\n\nUser Data:\n[
                 { "username": "user1", "email": "user1@socgen.com" },
                 { "username": "user2", "email": "user2@socgen.com" },
                 { "username": "admin", "email": "admin@socgen.com" }
