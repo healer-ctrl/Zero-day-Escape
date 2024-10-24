@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clickjacking Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Clickjacking Simulation</h1>
+        <p>Click the button below to perform an action:</p>
+        <button id="clickjacking-btn">Click me!</button>
+
+        <!-- Hidden iframe to simulate clickjacking -->
+        <iframe id="hidden-iframe" src="hidden_action.html" style="display: none;"></iframe>
+    </div>
+
+    <div class="overlay" id="clickjack-overlay">
+        <div>
+            <h2>Clickjacking Successful!</h2>
+            <p>You've unknowingly performed a malicious action!</p>
+            <button onclick="location.reload()">Retry</button>
+        </div>
+    </div>
+
+    <script src="scripts/clickjacking.js"></script>
+</body>
+</html>
