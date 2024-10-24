@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensitive Data Exposure (SSRF) Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .result-box {
+            background-color: #ffffff;
+            border-radius: 0.25rem;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="container">
+        <nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center bg-info text-white my-2">
+            <div class="p-2 w-90">
+                <h2>SSRF Playground</h2>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="container mt-5">
+    <div class="row">
+        <h1>Sensitive Data Exposure (SSRF) Demo</h1>
+        <p>This is a mockup demonstrating how SSRF vulnerabilities can expose sensitive data. Enter a URL to simulate a server-side request.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-6 border border-2">
+            <div id="request-section">
+                <h3>Make a Request</h3>
+                <form id="request-form" class="mb-3" onsubmit="return false;">
+                    <label for="url">URL:</label>
+                    <input type="text" id="url" class="form-control" placeholder="Enter a URL (e.g., www.socgen.com)">
+                    <button type="submit" class="btn btn-primary mt-2" onclick="makeRequest()">Send Request</button>
+                </form>
+                <div id="request-message"></div>
+            </div>
+        </div>
+
+        <div class="col-6 border border-2">
+            <div id="result-section" style="display: none;">
+                <h3>Response:</h3>
+                <div class="result-box">
+                    <pre id="response-display"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fixed-bottom bg-info text-white text-center">
+    <small>&copy; Copyright 2023, Your Name</small>
+</div>
+
+<script>
+    function makeRequest() {
+        const url = document.getElementById('url').value;
+
+        // Mock responses for sensitive data exposure
+        let response;
+
+        // Check for specific endpoints and file access
+        if (url === "www.socgen.com/db") {
+            response = `Access Denied! You do not have permission to view this resource.\n\nUser Data:\n[
+                { "username": "user1", "email": "user1@socgen.com" },
+                { "username": "user2", "email": "user2@socgen.com" },
+                { "username": "admin", "email": "admin@socgen.com" }
+            ]`;
+        } else if (url === "www.socgen.com/file2.txt") {
+            response = `File Content:\nThis is the content of file2.txt. It contains sensitive information that shouldn't be exposed.`;
+        } else if (url.includes("www.socgen.com")) {
+            response = `Successfully reached ${url}!\nResponse: 200 OK\nContent: Simulated content from ${url}`;
+        } else {
+            response = `Error: Invalid URL format.`;
+        }
+
+        // Displaying the response
+        document.getElementById('response-display').innerText = response;
+        document.getElementById('result-section').style.display = 'block';
+        document.getElementById('request-message').innerText = '';
+    }
+</script>
+
+</body>
+
+</html>

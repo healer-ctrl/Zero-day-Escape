@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Explore SQL vulnerabilities safely with the SQL Injection Playground. Learn how queries are manipulated without connecting to a real database.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Injection Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background for the whole page */
+        }
+        .result-table {
+            max-height: 200px; /* Adjust height as needed */
+            overflow-y: auto;
+            background-color: #ffffff; /* White background for the table */
+            border-radius: 0.25rem; /* Rounded corners */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+            margin-top: 15px; /* Space above the table */
+        }
+        .result-table thead th {
+            background-color: #dc3545; /* Red header background color */
+            color: white; /* White text for header */
+            position: sticky; /* Sticky position for the header */
+            top: 0; /* Stick to the top */
+            z-index: 10; /* Ensure it is above the scrolling content */
+        }
+        .result-table th, .result-table td {
+            text-align: center; /* Center align text in headers and cells */
+            padding: 10px; /* Padding for table cells */
+        }
+        .result-table tbody tr:nth-child(odd) {
+            background-color: #f1f1f1; /* Light gray for odd rows */
+        }
+        .result-table tbody tr:nth-child(even) {
+            background-color: #ffffff; /* White for even rows */
+        }
+        .result-table tbody tr:hover {
+            background-color: #e0e0e0; /* Light gray on hover */
+            cursor: pointer; /* Change cursor on hover */
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="container">
+        <nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center bg-info text-white my-2">
+            <div class="p-2 w-90">
+                <h2>SQL Injection Playground</h2>
+            </div>
+        </nav>
+    </div>
+</header>
+<div class="container mt-5">
+    <div class="row">
+        <h1>SQL Injection Demo</h1>
+        <p>Welcome to the <strong>SQL Injection Playground</strong>. This platform allows you to experiment with SQL injection techniques safely.</p>
+        <h5>Enter a username and password, or try SQL injection patterns!</h5>
+    </div>
+    <div class="row">
+        <div class="col-6 border border-2">
+            <div id="query-section">
+                <h3>Execute Query</h3>
+                <form id="query-form" class="mb-3">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" class="form-control" placeholder="Enter username">
+                    <label for="password">Password:</label>
+                    <input type="text" id="password" class="form-control" placeholder="Enter password">
+                    <button type="submit" class="btn btn-primary mt-2">Execute Query</button>
+                </form>
+                <div id="query-message"></div>
+            </div>
+        </div>
+        <div class="col-6 border border-2">
+            <div id="result-section" style="display: none;">
+                <h3>Dynamic SQL Statement:</h3>
+                <p><code id="sql-query"></code></p>
+                <h4>Query Result:</h4>
+                <div class="result-table">
+                    <table class="table mb-0">
+                        <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Password</th>
+                        </tr>
+                        </thead>
+                        <tbody id="result-body">
+                        <!-- Query results will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="warning-label" class="mt-2 text-danger display-4"></div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function() {
+    // Hard-coded list of sample users
+    const users = [
+        { username: "user1", password: "pass1" },
+        { username: "user2", password: "pass2" },
+        { username: "user3", password: "pass3" },
+        { username: "user4", password: "pass4" },
+        { username: "user5", password: "pass5" },
+        { username: "user6", password: "pass6" }
+    ];
+
+    // Regular expression to detect SQL Injection patterns
+    const sqlInjectionPattern = /('|"|--|;|DROP|SELECT|INSERT|UPDATE|DELETE)/i;
+
+    // Update SQL query and display it
+    function updateSQLQuery(username, password) {
+        const query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
+        $("#sql-query").text(query);
+        return query;
+    }
+
+    // Show query result
+    function displayResults(userResults) {
+        const resultBody = $("#result-body");
+        resultBody.empty();
+        userResults.forEach(user => {
+            resultBody.append(`<tr><td>${user.username}</td><td>${user.password}</td></tr>`);
+        });
+        $("#result-section").show();
+    }
+
+    // Handle form submission
+    $("#query-form").submit(function(event) {
+        event.preventDefault();
+        const username = $("#username").val();
+        const password = $("#password").val();
+
+        // Update SQL query
+        const query = updateSQLQuery(username, password);
+
+        // Check for SQL Injection patterns
+        if (sqlInjectionPattern.test(username) || sqlInjectionPattern.test(password)) {
+            // Simulate SQL Injection scenario
+            const userResults = users; // In a real scenario, this would be a database call
+            $("#warning-label").addClass("text-danger").text("Warning: Potential SQL Injection detected.");
+            displayResults(userResults);
+        } else {
+            // Normal query
+            const user = users.find(u => u.username === username && u.password === password);
+            if (user) {
+                displayResults([user]);
+                $("#query-message").html(`<p class="text-success">Query executed successfully!</p>`);
+                $("#warning-label").text(""); // Clear any previous warnings
+            } else {
+                $("#query-message").html(`<p class="text-danger">No matching user found.</p>`);
+                $("#result-section").hide();
+                $("#warning-label").text(""); // Clear any previous warnings
+            }
+        }
+    });
+
+    // Initial setup
+    updateSQLQuery("", "");
+});
+
+</script>
+</body>
+
+</html>
